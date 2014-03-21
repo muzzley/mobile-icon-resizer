@@ -12,5 +12,9 @@
     "async": "~0.2.10",
     "optimist": "~0.6.1",
     "mkdirp": "~0.3.5"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "muzzley-grunt-commons": "git+https://github.com/muzzley/grunt-commons.git#master"
   }
 }

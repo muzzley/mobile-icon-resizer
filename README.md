@@ -25,14 +25,16 @@ Example output:
     node ./index.js OPTIONS
 
     Options:
-      --input, -i        The prefix of the iOS image files.           [default: "appicon_1024.png"]
-      --inputsize, --is  The size, in pixels, of the input file.      [default: 1024]
-      --iosprefix        The prefix of the iOS image files.           [default: "Icon"]
-      --iosof            The output folder for the iOS icons.         [default: "."]
-      --androidof        The output folder for the Android icons.     [default: "."]
-      --androidofn       The output file name for the Android icons.  [default: "Icon.png"]
-      -v, --version      Print the script's version.                
-      -h, --help         Display this help text. 
+      --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
+      --inputsize, --is  The size, in pixels, of the input file.                         [default: 1024]
+      --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
+      --iosof            The output folder for the iOS icons.                             [default: "."]
+      --androidof        The output folder for the Android icons.                         [default: "."]
+      --androidofn       The output file name for the Android icons.               [default: "Icon.png"]
+      --platforms        For which platforms should the icons be resized. Comma-separated list.
+                         Possible values: ios, android                          [default: "ios,android"]
+      -v, --version      Print the script's version.                                                    
+      -h, --help         Display this help text.
 
 Example execution:
 

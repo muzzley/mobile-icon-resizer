@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var exec = require('child_process').exec;
 var path = require('path');
 var async = require('async');
@@ -13,7 +15,10 @@ var IOS_OUTPUT_FOLDER = '.';
 var ANDROID_OUTPUT_FOLDER = '.';
 var ANDROID_OUTPUT_FILE_NAME = 'Icon.png';
 
+var PLATFORMS_TO_BUILD = ['ios', 'android'];
+
 var optimist = require('optimist')
+    .wrap(100)
     .usage('$0 OPTIONS')
     .options('input', {
       describe: 'The prefix of the iOS image files.',
@@ -40,6 +45,10 @@ var optimist = require('optimist')
     .options('androidofn', {
       describe: 'The output file name for the Android icons.',
       default: ANDROID_OUTPUT_FILE_NAME
+    })
+    .options('platforms', {
+      describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + PLATFORMS_TO_BUILD.join(', '),
+      default: PLATFORMS_TO_BUILD.join(',')
     })
     .describe('v', 'Print the script\'s version.')
     .alias('v', 'version')
@@ -84,6 +93,10 @@ if (argv.inputsize) {
   ORIGINAL_SIZE = argv.inputsize;
 }
 
+if (argv.platforms) {
+  PLATFORMS_TO_BUILD = argv.platforms.split(',');
+}
+
 // Convert "29x29" to 29 or "2x" to 2
 function getSize(str) {
   return str.split("x")[0].trim();
@@ -110,7 +123,7 @@ function resize(options, callback) {
   });
 }
 
-function convertiOS() {
+function convertiOS(callback) {
   var images = config.iOS.images;
 
   function handleImage(image, done) {
@@ -136,11 +149,12 @@ function convertiOS() {
     images,
     handleImage,
     function (err) {
+      callback(err);
     }
   );
 }
 
-function convertAndroid() {
+function convertAndroid(callback) {
   var images = config.android.images;
 
   function handleImage(image, done) {
@@ -164,10 +178,29 @@ function convertAndroid() {
     images,
     handleImage,
     function (err) {
-
+      callback(err);
     }
   );
 }
 
-convertiOS();
-convertAndroid();
+var platformConverters = {
+  'android': convertAndroid,
+  'ios': convertiOS
+};
+
+async.each(
+  PLATFORMS_TO_BUILD,
+  function (item, callback) {
+    if (typeof platformConverters[item] !== 'function') {
+      console.error('Platform type "'+item+'" is not supported.');
+      return;
+    }
+    platformConverters[item](callback);
+  },
+  function (err) {
+    if (err) {
+      console.log('Error performing resizing: ' + err);
+    }
+  }
+);
+
