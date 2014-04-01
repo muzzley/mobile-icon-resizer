@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muzzley/mobile-icon-resizer.git"
+  },
+  "author": "Tiago Alves",
   "license": "ISC",
   "dependencies": {
     "async": "~0.2.10",
