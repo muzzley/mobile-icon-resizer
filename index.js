@@ -1,3 +1,1 @@
-exports = module.exports = {
-  Resizer: require('./lib/Resizer')
-};
+exports = module.exports = require('./lib/resize');

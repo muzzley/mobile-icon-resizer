@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-var resize = require('./lib/resizer');
+
+var resize = require('./lib/resize');
 var config = require('./config');
 
 var VERSION = require('./package.json').version;
