@@ -103,23 +103,23 @@ var config = {
     "images" : [
       {
         "ratio" : "1/4",
-        "folder" : "drawables-mdpi"
+        "folder" : "drawable-mdpi"
       },
       {
         "ratio" : "3/8",
-        "folder" : "drawables-hdpi"
+        "folder" : "drawable-hdpi"
       },
       {
         "ratio" : "1/2",
-        "folder" : "drawables-xhdpi"
+        "folder" : "drawable-xhdpi"
       },
       {
         "ratio" : "3/4",
-        "folder" : "drawables-xxhdpi"
+        "folder" : "drawable-xxhdpi"
       },
       {
         "ratio" : "1",
-        "folder" : "drawables-xxxhdpi"
+        "folder" : "drawable-xxxhdpi"
       }
     ]
   }
