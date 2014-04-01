@@ -45,15 +45,15 @@ The `resize()` function's `options` argument takes the following optional parame
 
 You can run the tool as an application like this:
 
-    mobile-icon-converter OPTIONS
+    mobile-icon-resizer OPTIONS
 
 The application can write its usage documentation to the command line. To view it, run:
 
-    mobile-icon-converter -h
+    mobile-icon-resizer -h
 
 Example output:
 
-    mobile-icon-converter OPTIONS
+    mobile-icon-resizer OPTIONS
 
     Options:
       --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
@@ -69,7 +69,7 @@ Example output:
 
 Example execution:
 
-    mobile-icon-converter -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android
+    mobile-icon-resizer -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android
 
 ## TODO
 
