@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var Resizer = require('./lib/Resizer');
+var resize = require('./lib/resizer');
 var config = require('./config');
 
 var VERSION = require('./package.json').version;
@@ -10,32 +10,32 @@ var optimist = require('optimist')
     .options('input', {
       describe: 'The prefix of the iOS image files.',
       alias: 'i',
-      default: Resizer.Defaults.ORIGINAL_ICON_FILE_NAME
+      default: resize.defaults.ORIGINAL_ICON_FILE_NAME
     })
     .options('inputsize', {
       describe: 'The size, in pixels, of the input file.',
       alias: 'is',
-      default: Resizer.Defaults.ORIGINAL_SIZE
+      default: resize.defaults.ORIGINAL_SIZE
     })
     .options('iosprefix', {
       describe: 'The prefix of the iOS image files.',
-      default: Resizer.Defaults.IOS_FILE_NAME_PREFIX
+      default: resize.defaults.IOS_FILE_NAME_PREFIX
     })
     .options('iosof', {
       describe: 'The output folder for the iOS icons.',
-      default: Resizer.Defaults.IOS_OUTPUT_FOLDER
+      default: resize.defaults.IOS_OUTPUT_FOLDER
     })
     .options('androidof', {
       describe: 'The output folder for the Android icons.',
-      default: Resizer.Defaults.ANDROID_OUTPUT_FOLDER
+      default: resize.defaults.ANDROID_OUTPUT_FOLDER
     })
     .options('androidofn', {
       describe: 'The output file name for the Android icons.',
-      default: Resizer.Defaults.ANDROID_OUTPUT_FILE_NAME
+      default: resize.defaults.ANDROID_OUTPUT_FILE_NAME
     })
     .options('platforms', {
-      describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + Resizer.Defaults.PLATFORMS_TO_BUILD.join(', '),
-      default: Resizer.Defaults.PLATFORMS_TO_BUILD.join(',')
+      describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + resize.defaults.PLATFORMS_TO_BUILD.join(', '),
+      default: resize.defaults.PLATFORMS_TO_BUILD.join(',')
     })
     .describe('v', 'Print the script\'s version.')
     .alias('v', 'version')
@@ -43,7 +43,6 @@ var optimist = require('optimist')
     .alias('h', 'help');
 
 var argv = optimist.argv;
-
 if (argv.help) {
   optimist.showHelp();
   process.exit(0);
@@ -86,7 +85,7 @@ if (argv.platforms) {
   options.platformsToBuild = argv.platforms.split(',');
 }
 
-Resizer.resize(options, function (err) {
+resize(options, function (err) {
   if (err) {
     console.log('Error performing resizing: ' + err);
   }

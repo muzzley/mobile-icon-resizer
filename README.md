@@ -24,11 +24,11 @@ This tool can either be used as a standalone application or as a module directly
 
 ### Module
 
-    var Resizer = require('mobile-icon-resizer').Resizer;
+    var resize = require('mobile-icon-resizer');
     var options = {
       // Your options here
     };
-    Resizer.resize(options, function (err) {
+    resize(options, function (err) {
     });
 
 The `resize()` function's `options` argument takes the following optional parameters:
@@ -64,7 +64,7 @@ Example output:
       --androidofn       The output file name for the Android icons.               [default: "Icon.png"]
       --platforms        For which platforms should the icons be resized. Comma-separated list.
                          Possible values: ios, android                          [default: "ios,android"]
-      -v, --version      Print the script's version.                                                    
+      -v, --version      Print the script's version.
       -h, --help         Display this help text.
 
 Example execution:
