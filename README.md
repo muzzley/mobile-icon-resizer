@@ -10,15 +10,19 @@ The image resizing is done with [ImageMagick](http://www.imagemagick.org/). Make
 
 ## Installation
 
-To install the project's Node.js module dependencies run the following command:
+To install the tool as another Node.js module's dependency, run the following command:
 
-    npm install
+    npm install mobile-icon-resizer
+
+To install it globally as an executable binary, install it as follows:
+
+    npm install mobile-icon-resizer -g
 
 ## Usage
 
 This tool can either be used as a standalone application or as a module directly from within another Node.js module.
 
-### ModuleResizer
+### Module
 
     var Resizer = require('mobile-icon-resizer').Resizer;
     var options = {
@@ -41,15 +45,15 @@ The `resize()` function's `options` argument takes the following optional parame
 
 You can run the tool as an application like this:
 
-    node resize.js OPTIONS
+    mobile-icon-converter OPTIONS
 
 The application can write its usage documentation to the command line. To view it, run:
 
-    node resize.js -h
+    mobile-icon-converter -h
 
 Example output:
 
-    node ./resize.js OPTIONS
+    mobile-icon-converter OPTIONS
 
     Options:
       --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
@@ -65,7 +69,7 @@ Example output:
 
 Example execution:
 
-    node resize.js -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android
+    mobile-icon-converter -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android
 
 ## TODO
 
