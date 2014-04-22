@@ -1,4 +1,4 @@
-# Mobile Icon Converter
+# Mobile Icon Resizer 
 
 This tool can be used to resize iOS and Android application icons in batch. That is, given a 1024x1024 icon, this tool will generate all necessary icon sizes.
 
