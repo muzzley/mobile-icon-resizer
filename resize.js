@@ -13,11 +13,6 @@ var optimist = require('optimist')
       alias: 'i',
       default: resize.defaults.ORIGINAL_ICON_FILE_NAME
     })
-    .options('inputsize', {
-      describe: 'The size, in pixels, of the input file.',
-      alias: 'is',
-      default: resize.defaults.ORIGINAL_SIZE
-    })
     .options('iosprefix', {
       describe: 'The prefix of the iOS image files.',
       default: resize.defaults.IOS_FILE_NAME_PREFIX
@@ -79,10 +74,6 @@ if (argv.androidofn) {
 
 if (argv.input) {
   options.originalIconFilename = argv.input;
-}
-
-if (argv.inputsize) {
-  options.originalSize = argv.inputsize;
 }
 
 if (argv.platforms) {

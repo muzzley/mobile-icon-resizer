@@ -35,7 +35,6 @@ The `resize()` function's `options` argument takes the following optional parame
 
 * **platformsToBuild**: For which platforms should the icons be resized. Comma-separated list. Possible values ['ios', 'android']
 * **originalIconFilename**: The original image's relative path and filename such as '../someIcon.png'. Default: 'appicon_1024.png'.
-* **originalSize**: The size, in pixels, of the input file. Default: 1024.
 * **iosFilenamePrefix**: The prefix of the iOS image files. Default: 'Icon'.
 * **iosOutputFolder**: The output folder for the iOS icons. Default: '.'.
 * **androidOutputFolder**: The output folder for the Android icons. Default: '.'.
@@ -58,7 +57,6 @@ Example output:
 
     Options:
       --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
-      --inputsize, --is  The size, in pixels, of the input file.                         [default: 1024]
       --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
       --iosof            The output folder for the iOS icons.                             [default: "."]
       --androidof        The output folder for the Android icons.                         [default: "."]
