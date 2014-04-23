@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
+var path = require('path');
 var resize = require('./lib/resize');
-var config = require('./config');
 
 var VERSION = require('./package.json').version;
 
@@ -37,6 +37,9 @@ var optimist = require('optimist')
     .options('platforms', {
       describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + resize.defaults.PLATFORMS_TO_BUILD.join(', '),
       default: resize.defaults.PLATFORMS_TO_BUILD.join(',')
+    })
+    .options('config', {
+      describe: 'A file with custom thumbnail sizes configuration.'
     })
     .describe('v', 'Print the script\'s version.')
     .alias('v', 'version')
@@ -84,6 +87,10 @@ if (argv.inputsize) {
 
 if (argv.platforms) {
   options.platformsToBuild = argv.platforms.split(',');
+}
+
+if (argv.config) {
+  options.config = argv.config;
 }
 
 resize(options, function (err) {
