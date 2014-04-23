@@ -39,6 +39,7 @@ The `resize()` function's `options` argument takes the following optional parame
 * **iosOutputFolder**: The output folder for the iOS icons. Default: '.'.
 * **androidOutputFolder**: The output folder for the Android icons. Default: '.'.
 * **androidOutputFilename**: The output file name for the Android icons. Default: 'Icon.png'.
+* **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
 
 ### Standalone Application
 
@@ -62,13 +63,99 @@ Example output:
       --androidofn       The output file name for the Android icons.               [default: "Icon.png"]
       --platforms        For which platforms should the icons be resized. Comma-separated list.
                          Possible values: ios, android                          [default: "ios,android"]
+      --config           A file with custom thumbnail sizes configuration.
       -v, --version      Print the script's version.
       -h, --help         Display this help text.
 
 Example execution:
 
-    mobile-icon-resizer -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android
+    mobile-icon-resizer -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android --config=custom-sizes.js
 
-## TODO
+## Thumbnail sizes configuration
 
-* Allow passing the target sizes for each platform (iOS and Android) as a parameter. Currently they're hard coded in the `config.js` file.
+By default, the thumbnail sizes that are generated are the ones defined in the provided [config.js](//github.com/muzzley/mobile-icon-resizer/blob/master/config.js) file.
+
+You can optionally define a file with a custom set of thumbnail size settings and use that instead. The file is either a CommonJS JavaScript file or a plain JSON file.
+
+### CommonJS JavaScript file
+
+Example:
+
+    var config = {
+      iOS: {
+        "images": [
+          {
+            "size" : "29x29",
+            "idiom" : "iphone",
+            "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
+            "scale" : "1x"
+          },
+          {
+            "size" : "29x29",
+            "idiom" : "iphone",
+            "filename" : "-Small@2x.png",
+            "scale" : "2x"
+          },
+          // ...
+          {
+            "size" : "76x76",
+            "idiom" : "ipad",
+            "filename" : "-76@2x.png",
+            "scale" : "2x"
+          }
+        ]
+      },
+      android: {
+        "images" : [
+          {
+            "ratio" : "1/4",
+            "folder" : "drawable-mdpi"
+          },
+          // ...
+          {
+            "ratio" : "1",
+            "folder" : "drawable-xxxhdpi"
+          }
+        ]
+      }
+    };
+
+    // Don't forget to export the config object!
+    exports = module.exports = config;
+
+### Plain JSON file
+
+Example:
+
+    {
+      "iOS": {
+        "images": [
+          {
+            "size" : "29x29",
+            "idiom" : "iphone",
+            "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
+            "scale" : "1x"
+          },
+          // ...
+          {
+            "size" : "76x76",
+            "idiom" : "ipad",
+            "filename" : "-76@2x.png",
+            "scale" : "2x"
+          }
+        ]
+      },
+      "android": {
+        "images" : [
+          {
+            "ratio" : "1/4",
+            "folder" : "drawable-mdpi"
+          },
+          // ...
+          {
+            "ratio" : "1",
+            "folder" : "drawable-xxxhdpi"
+          }
+        ]
+      }
+    }
