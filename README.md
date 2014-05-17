@@ -56,13 +56,13 @@ Example output:
     mobile-icon-resizer OPTIONS
 
     Options:
-      --input, -i        The prefix of the iOS image files.                   [default: "appicon_1024.png"]
-      --iosprefix        The prefix of the iOS image files.                               [default: "Icon"]
-      --iosof            The output folder for the iOS icons.                                [default: "."]
-      --androidof        The output folder for the Android icons.                            [default: "."]
+      --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
+      --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
+      --iosof            The output folder for the iOS icons.                             [default: "."]
+      --androidof        The output folder for the Android icons.                         [default: "."]
       --androidofn       The output file name for the Android icons.
       --platforms        For which platforms should the icons be resized. Comma-separated list.
-                         Possible values: ios, android                             [default: "ios,android"]
+                         Possible values: ios, android                          [default: "ios,android"]
       --config           A file with custom thumbnail sizes configuration.
       -v, --version      Print the script's version.
       -h, --help         Display this help text.
