@@ -38,7 +38,7 @@ The `resize()` function's `options` argument takes the following optional parame
 * **iosFilenamePrefix**: The prefix of the iOS image files. Default: 'Icon'.
 * **iosOutputFolder**: The output folder for the iOS icons. Default: '.'.
 * **androidOutputFolder**: The output folder for the Android icons. Default: '.'.
-* **androidOutputFilename**: The output file name for the Android icons. Default: 'Icon.png'.
+* **androidOutputFilename**: The output file name for the Android icons.
 * **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
 
 ### Standalone Application
@@ -56,13 +56,13 @@ Example output:
     mobile-icon-resizer OPTIONS
 
     Options:
-      --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
-      --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
-      --iosof            The output folder for the iOS icons.                             [default: "."]
-      --androidof        The output folder for the Android icons.                         [default: "."]
-      --androidofn       The output file name for the Android icons.               [default: "Icon.png"]
+      --input, -i        The prefix of the iOS image files.                   [default: "appicon_1024.png"]
+      --iosprefix        The prefix of the iOS image files.                               [default: "Icon"]
+      --iosof            The output folder for the iOS icons.                                [default: "."]
+      --androidof        The output folder for the Android icons.                            [default: "."]
+      --androidofn       The output file name for the Android icons.
       --platforms        For which platforms should the icons be resized. Comma-separated list.
-                         Possible values: ios, android                          [default: "ios,android"]
+                         Possible values: ios, android                             [default: "ios,android"]
       --config           A file with custom thumbnail sizes configuration.
       -v, --version      Print the script's version.
       -h, --help         Display this help text.

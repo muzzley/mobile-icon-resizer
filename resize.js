@@ -26,8 +26,7 @@ var optimist = require('optimist')
       default: resize.defaults.ANDROID_OUTPUT_FOLDER
     })
     .options('androidofn', {
-      describe: 'The output file name for the Android icons.',
-      default: resize.defaults.ANDROID_OUTPUT_FILE_NAME
+      describe: 'The output file name for the Android icons.'
     })
     .options('platforms', {
       describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + resize.defaults.PLATFORMS_TO_BUILD.join(', '),
