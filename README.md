@@ -39,6 +39,7 @@ The `resize()` function's `options` argument takes the following optional parame
 * **iosOutputFolder**: The output folder for the iOS icons. Default: '.'.
 * **androidOutputFolder**: The output folder for the Android icons. Default: '.'.
 * **androidOutputFilename**: The output file name for the Android icons.
+* **androidBaseSize**: The base size, in pixels, to consider for the `baseRatio`calculation. Default: 48.
 * **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
 
 ### Standalone Application
@@ -82,7 +83,9 @@ The Android icon sizes can be defined in three different ways. A single configur
 
 **`size`**
 
-Here's an example to generate the App icon that should be submitted to the Play Store:
+This is the way to define absolute sizes.
+
+Here's an example to generate the 512x512 app icon that should be submitted to the Play Store:
 
     {
       "size": "512x512",
@@ -93,7 +96,7 @@ Here's an example to generate the App icon that should be submitted to the Play 
 
 This is the preferred way to define the target size of the different icons. The base size set through the `--androidbs` parameter (`48` by default) is multiplied by the `baseRatio` value.
 
-In the following example we're generating an icon with the size 72x72.
+In the following example we're generating an icon with the size 72x72 (1.5 * 48).
 
     {
       "baseRatio" : "1.5",
