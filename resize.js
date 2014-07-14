@@ -28,6 +28,10 @@ var optimist = require('optimist')
     .options('androidofn', {
       describe: 'The output file name for the Android icons.'
     })
+    .options('androidbs', {
+      describe: 'The base size, in pixels, for `baseRatio` sizing calculation.',
+      default: resize.defaults.ANDROID_BASE_SIZE
+    })
     .options('platforms', {
       describe: 'For which platforms should the icons be resized. Comma-separated list.\nPossible values: ' + resize.defaults.PLATFORMS_TO_BUILD.join(', '),
       default: resize.defaults.PLATFORMS_TO_BUILD.join(',')
@@ -69,6 +73,10 @@ if (argv.androidof) {
 
 if (argv.androidofn) {
   options.androidOutputFilename = argv.androidofn.replace(/\/$/, "");
+}
+
+if (argv.androidbs) {
+  options.androidBaseSize = argv.androidbs;
 }
 
 if (argv.input) {

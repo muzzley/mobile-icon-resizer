@@ -61,6 +61,7 @@ Example output:
       --iosof            The output folder for the iOS icons.                             [default: "."]
       --androidof        The output folder for the Android icons.                         [default: "."]
       --androidofn       The output file name for the Android icons.
+      --androidbs        The base size, in pixels, for `baseRatio` sizing calculation.     [default: 48]
       --platforms        For which platforms should the icons be resized. Comma-separated list.
                          Possible values: ios, android                          [default: "ios,android"]
       --config           A file with custom thumbnail sizes configuration.
@@ -74,6 +75,44 @@ Example execution:
 ## Thumbnail sizes configuration
 
 By default, the thumbnail sizes that are generated are the ones defined in the provided [config.js](//github.com/muzzley/mobile-icon-resizer/blob/master/config.js) file.
+
+## Android Sizing Options
+
+The Android icon sizes can be defined in three different ways. A single configuration can use mixed sizing types in the same configuraion.
+
+**`size`**
+
+Here's an example to generate the App icon that should be submitted to the Play Store:
+
+    {
+      "size": "512x512",
+      "folder" : "WEB"
+    }
+
+**`baseRatio`**
+
+This is the preferred way to define the target size of the different icons. The base size set through the `--androidbs` parameter (`48` by default) is multiplied by the `baseRatio` value.
+
+In the following example we're generating an icon with the size 72x72.
+
+    {
+      "baseRatio" : "1.5",
+      "folder" : "drawable-hdpi"
+    }
+
+**`ratio`**
+
+Legacy way of defining the target size based on the original input file's dimensions.
+
+Given an input image with size 1024x1024, the following example would generate an image with size 256x256.
+
+    {
+      "ratio" : "1/4",
+      "folder" : "drawable-mdpi"
+    }
+
+
+## Custom sizing
 
 You can optionally define a file with a custom set of thumbnail size settings and use that instead. The file is either a CommonJS JavaScript file or a plain JSON file.
 
@@ -108,13 +147,17 @@ Example:
       android: {
         "images" : [
           {
-            "ratio" : "1/4",
+            "baseRatio" : "1",
             "folder" : "drawable-mdpi"
           },
           // ...
           {
-            "ratio" : "1",
+            "baseRatio" : "4",
             "folder" : "drawable-xxxhdpi"
+          },
+          {
+            "size": "512x512",
+            "folder" : "WEB"
           }
         ]
       }
@@ -137,25 +180,15 @@ Example:
             "scale" : "1x"
           },
           // ...
-          {
-            "size" : "76x76",
-            "idiom" : "ipad",
-            "filename" : "-76@2x.png",
-            "scale" : "2x"
-          }
         ]
       },
       "android": {
         "images" : [
           {
-            "ratio" : "1/4",
+            "baseRatio" : "1",
             "folder" : "drawable-mdpi"
           },
           // ...
-          {
-            "ratio" : "1",
-            "folder" : "drawable-xxxhdpi"
-          }
         ]
       }
     }

@@ -102,24 +102,37 @@ var config = {
   android: {
     "images" : [
       {
-        "ratio" : "1/4",
+        "baseRatio" : "3/4",
+        "folder" : "drawable-ldpi"
+      },
+      {
+        "baseRatio" : "1",
         "folder" : "drawable-mdpi"
       },
       {
-        "ratio" : "3/8",
+        "baseRatio" : "4/3",
+        "folder" : "drawable-tvdpi"
+      },
+      {
+        "baseRatio" : "1.5",
         "folder" : "drawable-hdpi"
       },
       {
-        "ratio" : "1/2",
+        "baseRatio" : "2",
         "folder" : "drawable-xhdpi"
       },
       {
-        "ratio" : "3/4",
+        "baseRatio" : "3",
         "folder" : "drawable-xxhdpi"
       },
       {
-        "ratio" : "1",
+        "baseRatio" : "4",
         "folder" : "drawable-xxxhdpi"
+      },
+      {
+        // Image to upload to the Play Store
+        "size": "512x512",
+        "folder" : "WEB"
       }
     ]
   }
