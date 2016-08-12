@@ -183,7 +183,7 @@ Example:
       {
         "size" : "29x29",
         "idiom" : "iphone",
-        "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
+        "filename" : "-Small.png",
         "scale" : "1x"
       },
       // ...
