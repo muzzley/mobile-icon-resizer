@@ -186,7 +186,6 @@ Example:
         "filename" : "-Small.png",
         "scale" : "1x"
       },
-      // ...
     ]
   },
   "android": {
@@ -195,7 +194,6 @@ Example:
         "baseRatio" : "1",
         "folder" : "drawable-mdpi"
       },
-      // ...
     ]
   }
 }
