@@ -1,4 +1,4 @@
-# Mobile Icon Resizer 
+# Mobile Icon Resizer
 
 This tool can be used to resize iOS and Android application icons in batch. That is, given a 1024x1024 icon, this tool will generate all necessary icon sizes.
 
@@ -6,7 +6,7 @@ This tool can be used to resize iOS and Android application icons in batch. That
 
 The tool itself is a Node.js app/module so you'll need to have Node.js v0.8+ installed.
 
-The image resizing is done with [ImageMagick](http://www.imagemagick.org/). Make sure you have ImageMagick's `convert` command available in the command line.
+The image resizing is done with [ImageMagick](http://www.imagemagick.org/). Make sure you have ImageMagick's `convert` command available in the command line.  Windows users, see [Windows](#Windows) section below.
 
 ## Installation
 
@@ -41,7 +41,7 @@ The `resize()` function's `options` argument takes the following optional parame
 * **androidOutputFilename**: The output file name for the Android icons.
 * **androidBaseSize**: The base size, in pixels, to consider for the `baseRatio`calculation. Default: 48.
 * **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
-
+* **convertBin**:  *Windows machines only*.  See [Windows](#Windows) below.  Default `convert`;
 ### Standalone Application
 
 You can run the tool as an application like this:
@@ -66,6 +66,7 @@ Example output:
       --platforms        For which platforms should the icons be resized. Comma-separated list.
                          Possible values: ios, android                          [default: "ios,android"]
       --config           A file with custom thumbnail sizes configuration.
+      --convertbin       *Windows only*.  See Windows seciton below.            [default:  "convert"]
       -v, --version      Print the script's version.
       -h, --help         Display this help text.
 
@@ -123,75 +124,87 @@ You can optionally define a file with a custom set of thumbnail size settings an
 
 Example:
 
-    var config = {
-      iOS: {
-        "images": [
-          {
-            "size" : "29x29",
-            "idiom" : "iphone",
-            "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
-            "scale" : "1x"
-          },
-          {
-            "size" : "29x29",
-            "idiom" : "iphone",
-            "filename" : "-Small@2x.png",
-            "scale" : "2x"
-          },
-          // ...
-          {
-            "size" : "76x76",
-            "idiom" : "ipad",
-            "filename" : "-76@2x.png",
-            "scale" : "2x"
-          }
-        ]
+```javascript
+var config = {
+  iOS: {
+    "images": [
+      {
+        "size" : "29x29",
+        "idiom" : "iphone",
+        "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
+        "scale" : "1x"
       },
-      android: {
-        "images" : [
-          {
-            "baseRatio" : "1",
-            "folder" : "drawable-mdpi"
-          },
-          // ...
-          {
-            "baseRatio" : "4",
-            "folder" : "drawable-xxxhdpi"
-          },
-          {
-            "size": "512x512",
-            "folder" : "WEB"
-          }
-        ]
+      {
+        "size" : "29x29",
+        "idiom" : "iphone",
+        "filename" : "-Small@2x.png",
+        "scale" : "2x"
+      },
+      // ...
+      {
+        "size" : "76x76",
+        "idiom" : "ipad",
+        "filename" : "-76@2x.png",
+        "scale" : "2x"
       }
-    };
+    ]
+  },
+  android: {
+    "images" : [
+      {
+        "baseRatio" : "1",
+        "folder" : "drawable-mdpi"
+      },
+      // ...
+      {
+        "baseRatio" : "4",
+        "folder" : "drawable-xxxhdpi"
+      },
+      {
+        "size": "512x512",
+        "folder" : "WEB"
+      }
+    ]
+  }
+};
 
-    // Don't forget to export the config object!
-    exports = module.exports = config;
+// Don't forget to export the config object!
+exports = module.exports = config;
+```
 
 ### Plain JSON file
 
 Example:
 
-    {
-      "iOS": {
-        "images": [
-          {
-            "size" : "29x29",
-            "idiom" : "iphone",
-            "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
-            "scale" : "1x"
-          },
-          // ...
-        ]
+```json
+{
+  "iOS": {
+    "images": [
+      {
+        "size" : "29x29",
+        "idiom" : "iphone",
+        "filename" : "-Small.png", // The filename will be prefixed with the provided iOS filename prefix
+        "scale" : "1x"
       },
-      "android": {
-        "images" : [
-          {
-            "baseRatio" : "1",
-            "folder" : "drawable-mdpi"
-          },
-          // ...
-        ]
-      }
-    }
+      // ...
+    ]
+  },
+  "android": {
+    "images" : [
+      {
+        "baseRatio" : "1",
+        "folder" : "drawable-mdpi"
+      },
+      // ...
+    ]
+  }
+}
+```
+
+
+
+### Windows
+
+Because Windows has a system file named `convert.exe`, many ImageMagick users on Windows rename the ImageMagick version of `convert.exe` to something like `iconvert.exe` ( see [this StackOverflow answer](http://stackoverflow.com/a/28876385/1167442) ).  You will also need to ensure that the directory that holds the ImageMagick binaries is included in your `path` variable.
+
+In addition, add the following property to your configuration file.  `convertBin`, and set the value to whatever you have renamed the file to, e.g. `iconvert` ( the extension is not necessary ).
