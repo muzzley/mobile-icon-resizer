@@ -6,7 +6,7 @@ This tool can be used to resize iOS and Android application icons in batch. That
 
 The tool itself is a Node.js app/module so you'll need to have Node.js v0.8+ installed.
 
-The image resizing is done with [ImageMagick](http://www.imagemagick.org/). Make sure you have ImageMagick's `convert` command available in the command line.  Windows users, see [Windows](#Windows) section below.
+The image resizing is done with [ImageMagick](http://www.imagemagick.org/). Make sure you have ImageMagick's `convert` command available in the command line.  Windows users, see [Windows Support](#windows-support) section below.
 
 ## Installation
 
@@ -41,38 +41,52 @@ The `resize()` function's `options` argument takes the following optional parame
 * **androidOutputFilename**: The output file name for the Android icons.
 * **androidBaseSize**: The base size, in pixels, to consider for the `baseRatio`calculation. Default: 48.
 * **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
-* **convertBin**:  *Windows machines only*.  See [Windows](#Windows) below.  Default `convert`;
+* **convertBin**:  *Windows machines only*.  See [Windows](#windows) below.  Default `convert`.
+
+
 ### Standalone Application
 
 You can run the tool as an application like this:
 
-    mobile-icon-resizer OPTIONS
+```shell
+mobile-icon-resizer OPTIONS
+```
 
 The application can write its usage documentation to the command line. To view it, run:
 
-    mobile-icon-resizer -h
+```shell
+mobile-icon-resizer -h
+```
 
 Example output:
 
-    mobile-icon-resizer OPTIONS
+```shell
+mobile-icon-resizer OPTIONS
+```
 
-    Options:
-      --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
-      --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
-      --iosof            The output folder for the iOS icons.                             [default: "."]
-      --androidof        The output folder for the Android icons.                         [default: "."]
-      --androidofn       The output file name for the Android icons.
-      --androidbs        The base size, in pixels, for `baseRatio` sizing calculation.     [default: 48]
-      --platforms        For which platforms should the icons be resized. Comma-separated list.
-                         Possible values: ios, android                          [default: "ios,android"]
-      --config           A file with custom thumbnail sizes configuration.
-      --convertbin       *Windows only*.  See Windows seciton below.            [default:  "convert"]
-      -v, --version      Print the script's version.
-      -h, --help         Display this help text.
+```shell
+Options:
+  --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
+  --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
+  --iosof            The output folder for the iOS icons.                             [default: "."]
+  --androidof        The output folder for the Android icons.                         [default: "."]
+  --androidofn       The output file name for the Android icons.
+  --androidbs        The base size, in pixels, for `baseRatio` sizing calculation.     [default: 48]
+  --platforms        For which platforms should the icons be resized. Comma-separated list.
+                     Possible values: ios, android                          [default: "ios,android"]
+  
+  --config           A file with custom thumbnail sizes configuration.
+  --convertbin       Windows only.  See 'Windows Support' in ReadMe File.  	   [default:  "convert"]
+  
+  -v, --version      Print the script's version.
+  -h, --help         Display this help text.
+```
 
 Example execution:
 
-    mobile-icon-resizer -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android --config=custom-sizes.js
+```shell
+mobile-icon-resizer -i appicon_1024.png --iosprefix="Icon" --iosof=output/ios --androidof=output/android --config=custom-sizes.js
+```
 
 ## Thumbnail sizes configuration
 
@@ -88,10 +102,12 @@ This is the way to define absolute sizes.
 
 Here's an example to generate the 512x512 app icon that should be submitted to the Play Store:
 
-    {
-      "size": "512x512",
-      "folder" : "WEB"
-    }
+```json
+{
+  "size": "512x512",
+  "folder" : "WEB"
+}
+```
 
 **`baseRatio`**
 
@@ -99,10 +115,12 @@ This is the preferred way to define the target size of the different icons. The 
 
 In the following example we're generating an icon with the size 72x72 (1.5 * 48).
 
-    {
-      "baseRatio" : "1.5",
-      "folder" : "drawable-hdpi"
-    }
+```json
+{
+  "baseRatio" : "1.5",
+  "folder" : "drawable-hdpi"
+}
+```
 
 **`ratio`**
 
@@ -110,17 +128,19 @@ Legacy way of defining the target size based on the original input file's dimens
 
 Given an input image with size 1024x1024, the following example would generate an image with size 256x256.
 
-    {
-      "ratio" : "1/4",
-      "folder" : "drawable-mdpi"
-    }
+```json
+{
+  "ratio" : "1/4",
+  "folder" : "drawable-mdpi"
+}
+```
 
 
 ## Custom sizing
 
 You can optionally define a file with a custom set of thumbnail size settings and use that instead. The file is either a CommonJS JavaScript file or a plain JSON file.
 
-### CommonJS JavaScript file
+### CommonJS Javascript File
 
 Example:
 
@@ -172,7 +192,7 @@ var config = {
 exports = module.exports = config;
 ```
 
-### Plain JSON file
+### Plain JSON File
 
 Example:
 
@@ -201,8 +221,10 @@ Example:
 
 
 
-### Windows
+## Windows Support
 
-Because Windows has a system file named `convert.exe`, many ImageMagick users on Windows rename the ImageMagick version of `convert.exe` to something like `iconvert.exe` ( see [this StackOverflow answer](http://stackoverflow.com/a/28876385/1167442) ).  You will also need to ensure that the directory that holds the ImageMagick binaries is included in your `path` variable.
+Because Windows has a system file named `convert.exe`, many ImageMagick users on Windows rename the ImageMagick version of `convert.exe` to something like `iconvert.exe` ( see [this StackOverflow answer](http://stackoverflow.com/a/28876385/1167442) ).  
 
-In addition, add the following property to your configuration file.  `convertBin`, and set the value to whatever you have renamed the file to, e.g. `iconvert` ( the extension is not necessary ).
+You will also need to ensure that the directory that holds the ImageMagick binaries is included in your `path` variable.
+
+In addition, add the `convertBin` property to your configuration file or pass it as a command line parameter as specified above, and set the value to whatever you have renamed the `convert` binary to, e.g. `iconvert` ( the extension is not necessary ).
