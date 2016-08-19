@@ -9,7 +9,7 @@ var optimist = require('optimist')
     .wrap(100)
     .usage('$0 OPTIONS')
     .options('input', {
-      describe: 'The prefix of the iOS image files.',
+      describe: 'The input file path.',
       alias: 'i',
       default: resize.defaults.ORIGINAL_ICON_FILE_NAME
     })
@@ -38,6 +38,10 @@ var optimist = require('optimist')
     })
     .options('config', {
       describe: 'A file with custom thumbnail sizes configuration.'
+    })
+    .options('convertbin', {
+      describe: 'The file name of your ImageMagick convert executable. (See ReadMe for details)',
+      default: resize.defaults.CONVERT_BIN
     })
     .describe('v', 'Print the script\'s version.')
     .alias('v', 'version')
@@ -89,6 +93,10 @@ if (argv.platforms) {
 
 if (argv.config) {
   options.config = argv.config;
+}
+
+if (argv.convertbin) {
+  options.convertBin = argv.convertbin;
 }
 
 resize(options, function (err) {
