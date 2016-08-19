@@ -11,7 +11,7 @@ var optimist = require('optimist')
     .options('input', {
       describe: 'The input file path.',
       alias: 'i',
-      default: resize.defaults.ORIGINAL_ICON_FILE_NAME
+      demand: true
     })
     .options('iosprefix', {
       describe: 'The prefix of the iOS image files.',
