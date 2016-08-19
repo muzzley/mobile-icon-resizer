@@ -59,7 +59,7 @@ Example output:
     mobile-icon-resizer OPTIONS
 
     Options:
-      --input, -i        The prefix of the iOS image files.                [default: "appicon_1024.png"]
+      --input, -i        The prefix of the iOS image files.                                   [required]
       --iosprefix        The prefix of the iOS image files.                            [default: "Icon"]
       --iosof            The output folder for the iOS icons.                             [default: "."]
       --androidof        The output folder for the Android icons.                         [default: "."]
