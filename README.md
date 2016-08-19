@@ -41,7 +41,7 @@ The `resize()` function's `options` argument takes the following optional parame
 * **androidOutputFilename**: The output file name for the Android icons.
 * **androidBaseSize**: The base size, in pixels, to consider for the `baseRatio`calculation. Default: 48.
 * **config**: Optional path to a `.js` or `.json` file that defines the thumbnail size configuration. Default: use the built-in `config.js` file.
-* **convertBin**:  *Windows machines only*.  See [Windows](#windows) below.  Default `convert`.
+* **convertBin**:  *Windows machines only*.  See [Windows Support](#windows-support) below.  Default `convert`.
 
 
 ### Standalone Application
@@ -67,10 +67,10 @@ Example output:
       --androidbs        The base size, in pixels, for `baseRatio` sizing calculation.     [default: 48]
       --platforms        For which platforms should the icons be resized. Comma-separated list.
                          Possible values: ios, android                          [default: "ios,android"]
-
+    
       --config           A file with custom thumbnail sizes configuration.
       --convertbin       Windows only.  See 'Windows Support' in ReadMe File.  	   [default:  "convert"]
-
+    
       -v, --version      Print the script's version.
       -h, --help         Display this help text.
 
@@ -170,7 +170,7 @@ Example:
         ]
       }
     };
-
+    
     // Don't forget to export the config object!
     exports = module.exports = config;
 
